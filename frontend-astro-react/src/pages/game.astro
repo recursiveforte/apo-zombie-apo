@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Game from "../components/Game"
+import {Image} from "astro:assets";
+import apotitle from '../images/apotitle.png'
+---
+
+<Layout>
+    <div class="container">
+    <main>
+        <Image src={apotitle} alt="wahoo" class="titleImage" />
+        <h1 class="header">THE GAME</h1>
+        <Game client:only="react"></Game>
+    </main>
+    </div>
+</Layout>
+
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .titleImage {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .header {
+        text-align: center;
+        font-family: monospace;
+        width: 100%;
+    }
+
+    main {
+        overflow: clip;
+        max-width: 400px;
+    }
+</style>

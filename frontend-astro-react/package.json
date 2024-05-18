@@ -1,0 +1,27 @@
+{
+  "name": "frontend",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/react": "^3.3.4",
+    "@nanostores/persistent": "^0.10.1",
+    "@nanostores/react": "^0.7.2",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^4.8.6",
+    "ggwave": "^0.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sharp": "^0.33.4",
+    "socket.io-client": "^4.7.5",
+    "typescript": "^5.4.5"
+  }
+}
