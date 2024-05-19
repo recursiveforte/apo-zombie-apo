@@ -20,7 +20,7 @@ function Setup({setID}: {setID: (id: string) => void}) {
   </div>
 }
 
-function init_socket(
+/*function init_socket(
   setSocket: (socket: Socket) => void,
   beaconID: string) {
 
@@ -48,7 +48,7 @@ function init_socket(
       })
     })
   })
-}
+}*/
 
 export default function Beacon() {
   const $beaconId = useStore(beaconId);
