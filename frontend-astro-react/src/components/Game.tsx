@@ -102,7 +102,7 @@ async function init_socket(
     }
 
     let lastTimestamp = Date.now()
-    let timeout: NodeJS.Timeout
+    let timeout: any
     async function postHeartbeat() {
       timeout = setTimeout(() => {
         let curr = Date.now()

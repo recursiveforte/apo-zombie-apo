@@ -14,3 +14,15 @@ const redisClient = () => {
 }
 
 export const db = redisClient()
+
+async function main() {
+  db.flushdb(cb => {
+    console.log(cb)
+  })
+}
+
+if (require.main === module) {
+  if (process.argv.includes("--clear")) {
+    main()
+  }
+}

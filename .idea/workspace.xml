@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="9a743f3c-e5d1-4906-8e6b-377014465608" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/components/Beacon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/components/Beacon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-node/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx" afterDir="false" />
     </list>
-    <list id="8bf7e13c-a5b1-4152-9819-9de77dfb96de" name="Changes by jc" comment="" />
+    <list id="8bf7e13c-a5b1-4152-9819-9de77dfb96de" name="Changes by jc" comment="">
+      <change beforePath="$PROJECT_DIR$/backend-node/db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/db.ts" afterDir="false" />
+    </list>
     <list id="f7a3546e-dc6a-42e0-b5b9-205a299f242a" name="Changes by snwy" comment="" />
     <list id="0052f61a-6825-4c79-92df-50b7159bfd9b" name="Changes by user" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +82,7 @@
       <workItem from="1716009423069" duration="17371000" />
       <workItem from="1716065990270" duration="371000" />
       <workItem from="1716066364652" duration="21879000" />
-      <workItem from="1716103927939" duration="10105000" />
+      <workItem from="1716103927939" duration="11204000" />
     </task>
     <servers />
   </component>
