@@ -20,6 +20,7 @@ function Login({ setUsername, init }: { setUsername: (id: string) => void, init:
         <input autoComplete="off" placeholder={"Orpheus"} className="input" type={"text"} value={currentUsername}
                onChange={e => setCurrentUsername(e.target.value)}></input>
         <button className="button" onClick={() => {
+          if (currentUsername.length < 1) return alert("What's your name?")
           setUsername(currentUsername)
           init()
         }}>Let's survive the apocalypse!
@@ -54,8 +55,6 @@ async function init_socket(
 
   if (socket) {
     socket.on("connect", () => {
-      console.log(socket.id)
-
       socket.on("about", props => {
         setUser(JSON.parse(props))
       })
@@ -66,10 +65,6 @@ async function init_socket(
 
       socket.on("id", props => {
         props = JSON.parse(props)
-        console.log({
-          ...props,
-          username
-        })
         if (!id) {
           userId.set(props.id)
           id = props.id
@@ -108,7 +103,8 @@ async function init_socket(
       props = JSON.parse(props)
       setUser(props.me)
     })
-    
+
+
     socket.on("disconnect", () => {
       if (timeout) clearTimeout(timeout)
     })
@@ -156,6 +152,7 @@ export default function Game() {
   const init = () => {
     init_ggwave().then(() => {
       init_receive((id: string) => {
+        navigator.vibrate(200);
         if (socket)
           socket.emit("tag", {
             taggee: $userId,
@@ -206,7 +203,14 @@ export default function Game() {
             // @ts-expect-error
             const result = await qr.decodeFromImage(event.target.result)
             const data = result.data
-            console.log(data)
+            // TODO: Regenerate data
+            let valid = true
+            if (valid && socket) {
+              // Give points
+              socket.emit("beacon", {
+                ...user
+              })
+            }
           }
           reader.readAsDataURL(barcode)
           // @ts-expect-error

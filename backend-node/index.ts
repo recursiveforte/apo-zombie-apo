@@ -58,10 +58,13 @@ app.get('/', (_, res) => {
 
 io.on('connection', async client => {
   const auth = async (id: string): Promise<User> => {
-    const user = await get(id).catch(err => {
-      console.log("ERROR")
+    const user = {
+      id,
+      ...await get(id).catch(err => {
+        console.log("ERROR")
         throw new Error('Invalid ID')
       })
+    }
     //console.log("User", user)
     return user as User
   }
@@ -177,7 +180,6 @@ io.on('connection', async client => {
 
     console.log("tagged!!", tagger.username, taggee.username)
     console.log("wahooo", tagger.id, taggee.id)
-    console.log("double", data.tagger, data.taggee)
 
     if (tagger.zombie && !taggee.zombie) {
       // Transfer points from human to zombie, and turn human into zombie
