@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a743f3c-e5d1-4906-8e6b-377014465608" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/layouts/Layout.astro" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/layouts/Layout.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/pages/game.astro" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/pages/game.astro" afterDir="false" />
     </list>
     <list id="8bf7e13c-a5b1-4152-9819-9de77dfb96de" name="Changes by jc" comment="" />
     <list id="f7a3546e-dc6a-42e0-b5b9-205a299f242a" name="Changes by snwy" comment="" />
@@ -77,7 +77,7 @@
       <workItem from="1715997249569" duration="1932000" />
       <workItem from="1716009423069" duration="17371000" />
       <workItem from="1716065990270" duration="371000" />
-      <workItem from="1716066364652" duration="10475000" />
+      <workItem from="1716066364652" duration="10535000" />
     </task>
     <servers />
   </component>
