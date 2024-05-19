@@ -14,6 +14,7 @@ import factory from 'ggwave'
       parameters = ggwave.getDefaultParameters();
       parameters.sampleRateInp = context!.sampleRate;
       parameters.sampleRateOut = context!.sampleRate;
+      console.log(parameters)
       instance = ggwave.init(parameters);
     });
 

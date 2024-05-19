@@ -6,7 +6,7 @@ const socket = io('ws://localhost:3000')
 socket.on('connect', () => {
   let id: string
 
-  socket.on(socket.id, props => {
+  socket.on("id", props => {
     const storage = fs.readFileSync('localStorage.txt', 'utf-8')
     if (storage.length) id = storage
     if (!id) {

@@ -1,0 +1,123 @@
+@font-face {
+  font-family: "Neue Bit";
+  src: url("../../public/NeueBit-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Geist Sans";
+  src: url("../../public/Geist.woff2") format("woff2");
+}
+
+:root {
+  --monospace: "Neue Bit", monospace;
+  --sans-serif: "Geist Sans", sans-serif;
+}
+
+body, html {
+  min-height: 100vh;
+}
+
+button {
+  color: white;
+}
+
+.container {
+  font-family: var(--sans-serif);
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.titleImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.header {
+  letter-spacing: -2px;
+  filter: drop-shadow(0 0 4px #FF5DA9);
+  margin: 0;
+  font-family: var(--monospace);
+  text-align: center;
+  width: 100%;
+}
+
+h1.header {
+  font-size: 3.5rem;
+}
+
+h2.header {
+  font-size: 2rem;
+}
+
+main {
+  overflow: clip;
+  max-width: 400px;
+}
+
+.prose {
+  font-size: 1.2rem;
+  padding: 1.5rem;
+}
+
+.button {
+  background-color: rgb(64, 25, 134);
+  border: 2px solid rgb(121, 226, 240);
+  padding: 7px 12px;
+  text-align: center;
+  font: inherit;
+}
+
+.button a {
+  color: white;
+  text-decoration: none;
+  font: inherit;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 14px;
+}
+
+.input {
+  border: 1px solid white;
+  border-radius: 0;
+  padding: 7px 12px;
+  background-color: transparent;
+  color: white;
+  font-size: inherit;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+table tr {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+table td {
+  padding: 0.5rem;
+}
+
+table th {
+  letter-spacing: -1px;
+  text-align: left;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.range {
+  background-color: #D9D9D9;
+  height: 20px;
+}

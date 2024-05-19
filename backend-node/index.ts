@@ -5,22 +5,24 @@ import { db } from './db'
 import { v4 as uuid } from 'uuid'
 import { Server as HTTPServer } from 'http'
 import 'dotenv/config'
+import * as http from "http";
 
 const dbg = false
 const energyGain = 30
 
 const app = express()
-app.use(
-  cors({
-    origin: '*'
-  })
-)
+app.use(cors())
 
-const server = new HTTPServer(app)
-const io = new Server(server)
+const server = http.createServer(app)
+const io = new Server(server, {
+  cors: {
+    origin: "*"
+  }
+})
 
 type User = {
   id: string
+  username: string
   socket: string
   energy: number
   points: number
@@ -58,7 +60,7 @@ const calcPoints = (elapsed: number) => {
   return elapsed / 10
 }
 
-io.on('connection', client => {
+io.on('connection', async client => {
   const auth = async (props: { id: string }): Promise<User> => {
     const user = await get(props.id).catch(err => {
       throw new Error('Invalid ID')
@@ -67,7 +69,8 @@ io.on('connection', client => {
   }
 
   // Generate unique ID
-  const id = uuid()
+  const id = (await db.incr("id_max")).toString(36)
+
   db.set(
     id,
     JSON.stringify({
@@ -76,9 +79,16 @@ io.on('connection', client => {
       zombie: false
     })
   )
-  db.set(`socket-${client.id}`, JSON.stringify({ id }))
+  db.set(`socket-${client.id}`, JSON.stringify({id}))
 
-  client.emit(client.id, JSON.stringify({ id }))
+  client.on("about", async data => {
+    const user = auth(data)
+    client.emit("about", {
+      ...user
+    } as any)
+  })
+
+  client.emit("id", JSON.stringify({ id }))
 
   client.on('leaderboard', async data => {
     const getAllKeys = async (): Promise<string[]> =>
@@ -112,15 +122,13 @@ io.on('connection', client => {
     if (dbg) console.log('Updating username', data)
     client.emit(
       'username',
-      JSON.stringify(
-        await set(
-          data.id,
-          JSON.stringify({
-            ...user,
-            username: data.username
-          })
-        )
-      )
+      await set(
+        data.id,
+        JSON.stringify({
+          ...user,
+          username: data.username
+        })
+      ) as any
     )
   })
 
@@ -155,49 +163,13 @@ io.on('connection', client => {
 
   client.on('tag', async data => {
     // Tagged -
-    // tagger is human, taggee is human: take all points
     // tagger is zombie, taggee is human: take all points
     // otherwise, ignore
     const tagger = await auth(data.tagger)
     const taggee = await auth(data.taggee)
-    // if (!tagger.zombie && !taggee.zombie) {
-    //   // Check lastTaggedBy to make sure
-    //   const timestamp = Date.now()
-    //   if (
-    //     taggee.lastTaggedBy.id === tagger.id &&
-    //     timestamp - taggee.lastTaggedBy.time > 5
-    //   ) {
-    //     // Possible race conditions. Do not allow taggee to get points.
-    //     client.emit('error', 'Invalid time range')
-    //   }
 
-    //   // Transfer points from human to human
-    //   const points = taggee.points
-    //   const taggeeUpdated = await set(
-    //     taggee.id,
-    //     JSON.stringify({
-    //       ...taggee,
-    //       points: 0
-    //     })
-    //   )
-    //   const taggerUpdated = await set(
-    //     tagger.id,
-    //     JSON.stringify({
-    //       ...tagger,
-    //       points: tagger.points + points
-    //     })
-    //   )
-    //   client.emit(
-    //     'tag',
-    //     JSON.stringify({
-    //       tagger: taggerUpdated,
-    //       taggee: taggeeUpdated,
-    //       me: taggerUpdated
-    //     })
-    //   )
-    // } else
     if (tagger.zombie && !taggee.zombie) {
-      // Transfer points from human to zombie
+      // Transfer points from human to zombie, and turn human into zombie
       const points = taggee.points
       const taggeeUpdated = await set(
         taggee.id,
@@ -210,16 +182,17 @@ io.on('connection', client => {
         tagger.id,
         JSON.stringify({
           ...tagger,
-          points: tagger.points + points
+          points: tagger.points + points,
+          zombie: true
         })
       )
       client.emit(
         'tag',
-        JSON.stringify({
+        {
           tagger: taggerUpdated,
           taggee: taggeeUpdated,
-          me: taggerUpdated
-        })
+          me: taggeeUpdated
+        } as any
       )
     }
   })
@@ -233,16 +206,14 @@ io.on('connection', client => {
     // Convert to human too
     client.emit(
       'beacon',
-      JSON.stringify(
-        await set(
-          data.id,
-          JSON.stringify({
-            ...user,
-            energy: energyGain,
-            zombie: false
-          })
-        )
-      )
+      await set(
+        data.id,
+        JSON.stringify({
+          ...user,
+          energy: energyGain,
+          zombie: false
+        })
+      ) as any
     )
   })
 
