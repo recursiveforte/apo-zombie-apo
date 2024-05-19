@@ -5,39 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a743f3c-e5d1-4906-8e6b-377014465608" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend-astro-react/public/Geist.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-astro-react/public/NeueBit-Bold.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-astro-react/src/images/apotitle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-astro-react/src/pages/supersecretendpoint_beacon.astro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-deno/.env" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-deno/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-deno/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/.prettierrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-deno/db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/db.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-deno/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-deno/localStorage.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/localStorage.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-deno/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-deno/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-deno/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-deno/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/layouts/Layout.astro" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/layouts/Layout.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/lib/transceiver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/lib/transceiver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/pages/index.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/styles/globals.css" afterDir="false" />
     </list>
-    <list id="8bf7e13c-a5b1-4152-9819-9de77dfb96de" name="Changes by jc" comment="">
-      <change beforePath="$PROJECT_DIR$/backend-deno/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-astro-react/astro.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/astro.config.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/pages/game.astro" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/pages/game.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/pages/index.astro" afterDir="false" />
-    </list>
-    <list id="f7a3546e-dc6a-42e0-b5b9-205a299f242a" name="Changes by snwy" comment="">
-      <change beforePath="$PROJECT_DIR$/backend-deno/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/index.ts" afterDir="false" />
-    </list>
-    <list id="0bf03c71-234b-48cd-a50d-30ee8f752cf8" name="Changes by user" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/lib/stores.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/lib/stores.ts" afterDir="false" />
-    </list>
+    <list id="8bf7e13c-a5b1-4152-9819-9de77dfb96de" name="Changes by jc" comment="" />
+    <list id="f7a3546e-dc6a-42e0-b5b9-205a299f242a" name="Changes by snwy" comment="" />
+    <list id="0bf03c71-234b-48cd-a50d-30ee8f752cf8" name="Changes by user" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,53 +28,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/frontend-astro-react/src/pages/index.astro">
-      <ranges>
-        <range start1="2" end1="2" start2="2" end2="5" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
-        <range start1="5" end1="5" start2="8" end2="9" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="6" end1="7" start2="10" end2="20" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
-        <range start1="8" end1="8" start2="21" end2="22" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx">
-      <ranges>
-        <range start1="8" end1="9" start2="8" end2="9" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="10" end1="12" start2="10" end2="13" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="14" end1="19" start2="15" end2="23" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
-        <range start1="21" end1="21" start2="25" end2="71" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="26" end1="26" start2="76" end2="77" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="28" end1="28" start2="79" end2="81" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
-        <range start1="30" end1="32" start2="83" end2="87" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="33" end1="33" start2="88" end2="96" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="34" end1="42" start2="97" end2="108" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="46" end1="47" start2="112" end2="113" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="50" end1="56" start2="116" end2="120" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="60" end1="63" start2="124" end2="127" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/backend-node/index.ts">
-      <ranges>
-        <range start1="7" end1="7" start2="7" end2="8" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="12" end1="17" start2="13" end2="14" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="18" end1="20" start2="15" end2="21" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="23" end1="23" start2="24" end2="25" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
-        <range start1="60" end1="61" start2="62" end2="63" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="69" end1="70" start2="71" end2="73" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="78" end1="79" start2="81" end2="82" changelist="f7a3546e-dc6a-42e0-b5b9-205a299f242a" />
-        <range start1="80" end1="81" start2="83" end2="91" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="114" end1="123" start2="124" end2="131" changelist="f7a3546e-dc6a-42e0-b5b9-205a299f242a" />
-        <range start1="157" end1="158" start2="165" end2="165" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="162" end1="172" start2="169" end2="169" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="173" end1="198" start2="170" end2="170" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
-        <range start1="199" end1="200" start2="171" end2="172" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
-        <range start1="212" end1="213" start2="184" end2="186" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
-        <range start1="217" end1="218" start2="190" end2="191" changelist="f7a3546e-dc6a-42e0-b5b9-205a299f242a" />
-        <range start1="220" end1="222" start2="193" end2="195" changelist="f7a3546e-dc6a-42e0-b5b9-205a299f242a" />
-        <range start1="235" end1="245" start2="208" end2="216" changelist="f7a3546e-dc6a-42e0-b5b9-205a299f242a" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -152,7 +78,7 @@
       <workItem from="1715997249569" duration="1932000" />
       <workItem from="1716009423069" duration="17371000" />
       <workItem from="1716065990270" duration="371000" />
-      <workItem from="1716066364652" duration="10079000" />
+      <workItem from="1716066364652" duration="10211000" />
     </task>
     <servers />
   </component>
