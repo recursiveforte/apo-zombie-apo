@@ -8,7 +8,7 @@ import QRScanner from "./QRScanner.tsx";
 
 import { io, Socket } from "socket.io-client";
 
-const URL = "wss://rwzju.underpass.clb.li"
+const URL = "wss://apo-game-e04554cd894e.herokuapp.com/"
 
 const place = (position: number) => {
   switch (position) {
@@ -102,7 +102,7 @@ async function init_socket(
     }
 
     let lastTimestamp = Date.now()
-    let timeout: NodeJS.Timeout
+    let timeout: any;
     async function postHeartbeat() {
       timeout = setTimeout(() => {
         let curr = Date.now()

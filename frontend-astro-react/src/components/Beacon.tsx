@@ -3,7 +3,7 @@ import {useStore} from "@nanostores/react";
 import {beaconId} from "../lib/stores.ts";
 import {io, Socket} from "socket.io-client";
 
-const URL = "ws://localhost:3000"
+const URL = "wss://apo-game-e04554cd894e.herokuapp.com/"
 
 function Setup({setID}: {setID: (id: string) => void}) {
   const [currentID, setCurrentID] = useState("")
