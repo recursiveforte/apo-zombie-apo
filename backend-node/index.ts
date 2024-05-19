@@ -56,39 +56,43 @@ app.get('/', (_, res) => {
   res.send('Hello, world!')
 })
 
-const calcPoints = (elapsed: number) => {
-  return elapsed / 10
-}
-
 io.on('connection', async client => {
-  const auth = async (props: { id: string }): Promise<User> => {
-    const user = await get(props.id).catch(err => {
-      throw new Error('Invalid ID')
-    })
+  const auth = async (id: string): Promise<User> => {
+    const user = await get(id).catch(err => {
+      console.log("ERROR")
+        throw new Error('Invalid ID')
+      })
+    //console.log("User", user)
     return user as User
   }
+  
+  client.on('new', async () => {
+    // Generate unique ID
+    const id = (await db.incr("id_max")).toString(36)
 
-  // Generate unique ID
-  const id = (await db.incr("id_max")).toString(36)
+    db.set(
+      id,
+      JSON.stringify({
+        points: 0,
+        energy: 120,
+        zombie: false
+      })
+    )
+    db.set(`socket-${client.id}`, JSON.stringify({id}))
 
-  db.set(
-    id,
-    JSON.stringify({
+    client.emit("id", JSON.stringify({
+      id,
       points: 0,
       energy: 120,
       zombie: false
-    })
-  )
-  db.set(`socket-${client.id}`, JSON.stringify({id}))
-
-  client.on("about", async data => {
-    const user = auth(data)
-    client.emit("about", {
-      ...user
-    } as any)
+    }))
   })
 
-  client.emit("id", JSON.stringify({ id }))
+  client.on("about", async data => {
+    const user = await auth(data.id)
+    // console.log(user)
+    client.emit("about", JSON.stringify(user))
+  })
 
   client.on('leaderboard', async data => {
     const getAllKeys = async (): Promise<string[]> =>
@@ -102,8 +106,9 @@ io.on('connection', async client => {
     leaderboard = leaderboard.filter(key => !key.startsWith('socket'))
     let mapped = []
     for (let key of leaderboard) {
+      if (key == 'id_max') continue
       mapped.push({
-        key,
+        id: key,
         ...(await get(key))
       })
     }
@@ -111,15 +116,13 @@ io.on('connection', async client => {
       if ((a.points || 0) > (b.points || 0)) return -1
       return 1
     })
-    console.log(mapped)
     client.emit('leaderboard', JSON.stringify(mapped))
   })
 
   client.on('username', async data => {
-    const user = await auth(data).catch(err => {
+    const user = await auth(data.id).catch(err => {
       client.emit('error', err.toString())
     })
-    if (dbg) console.log('Updating username', data)
     client.emit(
       'username',
       await set(
@@ -133,17 +136,18 @@ io.on('connection', async client => {
   })
 
   client.on('heartbeat', async data => {
-    const user = await auth(data).catch(err => {
+    const user = await auth(data.id).catch(err => {
       client.emit('error', err.toString())
     })
     // Decrement energy, too
     if (user) {
-      let energy = user.energy - data.elapsed
+      let energy = user.energy <= 0 ? 0 : user.energy - Math.floor(data.elapsed / 1000)
+      // console.log(energy)
       let updated = await set(
         data.id,
         JSON.stringify({
           ...user,
-          points: user.points + (user.zombie ? 0 : calcPoints(data.elapsed)),
+          points: user.points + (user.zombie ? 0 : data.elapsed / (1000 * 10)),
           energy
         })
       )
@@ -157,16 +161,23 @@ io.on('connection', async client => {
           })
         )
       }
-      client.emit('heartbeat', JSON.stringify(updated))
+      //console.log("Updated heartbeat", updated)
+      client.emit('about', JSON.stringify(updated))
     }
   })
 
   client.on('tag', async data => {
+    if (data.taggee == data.tagger) return
+
     // Tagged -
     // tagger is zombie, taggee is human: take all points
     // otherwise, ignore
     const tagger = await auth(data.tagger)
     const taggee = await auth(data.taggee)
+
+    console.log("tagged!!", tagger.username, taggee.username)
+    console.log("wahooo", tagger.id, taggee.id)
+    console.log("double", data.tagger, data.taggee)
 
     if (tagger.zombie && !taggee.zombie) {
       // Transfer points from human to zombie, and turn human into zombie
@@ -199,7 +210,7 @@ io.on('connection', async client => {
 
   client.on('beacon', async data => {
     // With every scan, you get 30s of energy
-    const user = await auth(data).catch(err => {
+    const user = await auth(data.id).catch(err => {
       client.emit('error', err.toString())
     })
     if (dbg) console.log('Refilling user', user)
@@ -219,7 +230,7 @@ io.on('connection', async client => {
 
   client.on('disconnect', async () => {
     // Grab socket-${client.id} and use it to grab user ID -> delete key
-    const { id } = await get(`socket-${client.id}`)
+    const id = (await get(`socket-${client.id}`))?.id
     if (id) db.del(id)
   })
 })

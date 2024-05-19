@@ -4,7 +4,6 @@ import GameComponent from "../components/Game"
 import {Image} from "astro:assets";
 import apotitle from '../images/apotitle.png'
 import "../styles/globals.css"
-import Progress from "../components/Progress"
 ---
 
 <Layout>
@@ -13,7 +12,6 @@ import Progress from "../components/Progress"
         <Image src={apotitle} alt="wahoo" class="titleImage" />
         <h1 class="header">THE GAME</h1>
         <GameComponent client:only="react"></GameComponent>
-        <Progress percent={0}/>
     </main>
     </div>
 </Layout>

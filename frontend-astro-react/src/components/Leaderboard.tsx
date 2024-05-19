@@ -15,20 +15,26 @@ type User = {
 export default function Leaderboard({ leaderboard }: {
   leaderboard: User[]
 }) {
+  console.log(leaderboard)
+
   return (
     <div className="prose">
-      <h1 className="header">Leaderboard</h1>
+      <h1 className="header" style={{ textAlign:"left"}}>Leaderboard</h1>
       <table>
+        <tbody>
         <tr>
+          <th>Place</th>
           <th>Username</th>
           <th>Points</th>
         </tr>
         {leaderboard.map((user, idx) => (
-          <tr key={user.id}>
+          <tr key={idx}>
+            <td style={{ textAlign: "right" }}>{idx + 1}</td>
             <td>{user.username}</td>
-            <td>{user.points}</td>
+            <td>{Math.floor(user.points) || 0}</td>
           </tr>
         ))}
+        </tbody>
       </table>
     </div>
   )

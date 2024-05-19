@@ -10,11 +10,9 @@ import factory from 'ggwave'
 
     return await factory().then(function(_ggwave: any) {
       ggwave = _ggwave;
-      console.log(ggwave)
       parameters = ggwave.getDefaultParameters();
       parameters.sampleRateInp = context!.sampleRate;
       parameters.sampleRateOut = context!.sampleRate;
-      console.log(parameters)
       instance = ggwave.init(parameters);
     });
 
@@ -52,7 +50,7 @@ import factory from 'ggwave'
   var recorder: ScriptProcessorNode;
 
   // TODO: receive does not work on firefox!
-  export function init_receive(receive_callback: (id: number) => void) {
+  export function init_receive(receive_callback: (id: string) => void) {
     let constraints = {
       audio: {
         echoCancellation: false,
