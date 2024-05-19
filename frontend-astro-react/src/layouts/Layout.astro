@@ -1,9 +1,4 @@
 ---
-interface Props {
-	title: string | undefined;
-}
-
-const title= Astro.props.title || "Apocalypse: The Game";
 ---
 
 <!doctype html>
@@ -14,7 +9,7 @@ const title= Astro.props.title || "Apocalypse: The Game";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>Apocalypse: The Game</title>
 	</head>
 	<body>
 		<slot />
