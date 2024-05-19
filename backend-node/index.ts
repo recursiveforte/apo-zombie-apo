@@ -53,7 +53,7 @@ const set = async (
   })
 
 app.get('/', (_, res) => {
-  res.send('Hello, world!')
+  res.send('awawawa')
 })
 
 io.on('connection', async client => {
@@ -106,7 +106,7 @@ io.on('connection', async client => {
         })
       })
     let leaderboard = await getAllKeys()
-    leaderboard = leaderboard.filter(key => !key.startsWith('socket'))
+    leaderboard = leaderboard.filter(key => !key.startsWith('socket') && !key.startsWith("beacon"))
     let mapped = []
     for (let key of leaderboard) {
       if (key == 'id_max') continue
@@ -170,6 +170,7 @@ io.on('connection', async client => {
   })
 
   client.on('tag', async data => {
+    console.log("emit tag", data)
     if (data.taggee == data.tagger) return
 
     // Tagged -
@@ -179,43 +180,53 @@ io.on('connection', async client => {
     const taggee = await auth(data.taggee)
 
     console.log("tagged!!", tagger.username, taggee.username)
-    console.log("wahooo", tagger.id, taggee.id)
+    console.log("wahooo", tagger.zombie, taggee.zombie)
 
     if (tagger.zombie && !taggee.zombie) {
       // Transfer points from human to zombie, and turn human into zombie
       const points = taggee.points
+      console.log("transferring points", taggee.points)
       const taggeeUpdated = await set(
         taggee.id,
         JSON.stringify({
           ...taggee,
-          points: 0
+          points: 0,
+          energy: 0,
+          zombie: true
         })
       )
       const taggerUpdated = await set(
         tagger.id,
         JSON.stringify({
           ...tagger,
-          points: tagger.points + points,
-          zombie: true
+          points: tagger.points + points
         })
       )
-      client.emit(
-        'tag',
-        {
-          tagger: taggerUpdated,
-          taggee: taggeeUpdated,
-          me: taggeeUpdated
-        } as any
-      )
+      client.emit('about', taggeeUpdated)
     }
   })
+  // wibni these were dynamic on displays? oh well
+  const VALID_BEACONS = [
+    "bcn!c6239",
+    "bcn!29b1f",
+    "bcn!5385e",
+    "bcn!fdeb8",
+    "bcn!68b42"
+  ]
 
   client.on('beacon', async data => {
     // With every scan, you get 30s of energy
+    console.log("refilling user", data)
     const user = await auth(data.id).catch(err => {
       client.emit('error', err.toString())
     })
-    if (dbg) console.log('Refilling user', user)
+    if(!VALID_BEACONS.includes(data.code)) {
+      client.emit('error', "nice try chucklenuts")
+      console.log(`invalid code ${data.code} from ${data.id}`);
+      return
+    }
+    // TODO: debounce/ratelimit/cooldown plzzz
+    // not just for premature optimization on security, but also i think the QR lib spams reads
     // Convert to human too
     client.emit(
       'beacon',
@@ -223,7 +234,7 @@ io.on('connection', async client => {
         data.id,
         JSON.stringify({
           ...user,
-          energy: energyGain,
+          energy: Math.min(120, (user.energy || 0) + energyGain),
           zombie: false
         })
       ) as any
@@ -235,6 +246,9 @@ io.on('connection', async client => {
     const id = (await get(`socket-${client.id}`))?.id
     if (id) db.del(id)
   })
+
+  // Provide routes for tracking QR codes
+
 })
 
 const port = process.env.PORT || 3000

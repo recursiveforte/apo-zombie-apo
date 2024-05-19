@@ -5,15 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a743f3c-e5d1-4906-8e6b-377014465608" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-node/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-node/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-astro-react/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-astro-react/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/lib/stores.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/lib/stores.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/lib/transceiver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/lib/transceiver.ts" afterDir="false" />
     </list>
     <list id="8bf7e13c-a5b1-4152-9819-9de77dfb96de" name="Changes by jc" comment="">
       <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/pages/index.astro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/styles/globals.css" afterDir="false" />
     </list>
     <list id="f7a3546e-dc6a-42e0-b5b9-205a299f242a" name="Changes by snwy" comment="" />
     <list id="0052f61a-6825-4c79-92df-50b7159bfd9b" name="Changes by user" comment="">
       <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-astro-react/src/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-astro-react/src/styles/globals.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +45,36 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/frontend-astro-react/src/components/Game.tsx">
       <ranges>
-        <range start1="22" end1="22" start2="22" end2="23" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
-        <range start1="56" end1="58" start2="57" end2="57" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
-        <range start1="68" end1="72" start2="67" end2="67" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
-        <range start1="110" end1="111" start2="105" end2="107" changelist="0052f61a-6825-4c79-92df-50b7159bfd9b" />
-        <range start1="158" end1="158" start2="154" end2="155" changelist="0052f61a-6825-4c79-92df-50b7159bfd9b" />
-        <range start1="208" end1="209" start2="205" end2="213" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="2" end1="3" start2="2" end2="3" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
+        <range start1="4" end1="5" start2="4" end2="4" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="7" end1="7" start2="6" end2="8" changelist="0052f61a-6825-4c79-92df-50b7159bfd9b" />
+        <range start1="8" end1="9" start2="9" end2="9" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="10" end1="11" start2="10" end2="22" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="64" end1="64" start2="75" end2="79" changelist="0052f61a-6825-4c79-92df-50b7159bfd9b" />
+        <range start1="81" end1="83" start2="96" end2="102" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="106" end1="106" start2="125" end2="128" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="128" end1="128" start2="150" end2="151" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
+        <range start1="142" end1="143" start2="165" end2="166" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
+        <range start1="153" end1="153" start2="176" end2="177" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="154" end1="155" start2="178" end2="180" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="157" end1="158" start2="182" end2="183" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
+        <range start1="162" end1="163" start2="187" end2="188" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="167" end1="168" start2="192" end2="193" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
+        <range start1="183" end1="184" start2="208" end2="209" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="185" end1="186" start2="210" end2="211" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
+        <range start1="188" end1="189" start2="213" end2="214" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
+        <range start1="191" end1="192" start2="216" end2="217" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
+        <range start1="193" end1="217" start2="218" end2="236" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="220" end1="221" start2="239" end2="240" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
+        <range start1="222" end1="222" start2="241" end2="242" changelist="9a743f3c-e5d1-4906-8e6b-377014465608" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/frontend-astro-react/src/styles/globals.css">
+      <ranges>
+        <range start1="74" end1="75" start2="74" end2="75" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="83" end1="84" start2="83" end2="91" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="92" end1="93" start2="99" end2="100" changelist="8bf7e13c-a5b1-4152-9819-9de77dfb96de" />
+        <range start1="143" end1="143" start2="150" end2="154" changelist="0052f61a-6825-4c79-92df-50b7159bfd9b" />
       </ranges>
     </file>
   </component>
@@ -95,7 +128,7 @@
       <workItem from="1716009423069" duration="17371000" />
       <workItem from="1716065990270" duration="371000" />
       <workItem from="1716066364652" duration="21879000" />
-      <workItem from="1716103927939" duration="3415000" />
+      <workItem from="1716103927939" duration="9860000" />
     </task>
     <servers />
   </component>

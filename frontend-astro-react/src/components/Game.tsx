@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react"
 import { init_ggwave, init_receive, send } from "../lib/transceiver.ts";
-import { userId } from "../lib/stores.ts";
+import {initialRefresh, userId} from "../lib/stores.ts";
 import { useStore} from "@nanostores/react";
-import "./Game.css"
 import Progress from "./Progress.tsx";
 import Leaderboard from "./Leaderboard.tsx";
-import { io, Socket } from "socket.io-client";
-import QrcodeDecoder from "qrcode-decoder";
+import QRScanner from "./QRScanner.tsx";
 
-const URL = "wss://gin8x.underpass.clb.li"
+import { io, Socket } from "socket.io-client";
+
+const URL = "wss://rwzju.underpass.clb.li"
+
+const place = (position: number) => {
+  switch (position) {
+    case 1:
+      return "st"
+    case 2:
+      return "nd"
+    default:
+      return "th"
+  }
+}
 
 function Login({ setUsername, init }: { setUsername: (id: string) => void, init: () => void }) {
   const [currentUsername, setCurrentUsername] = useState("")
@@ -63,6 +74,10 @@ async function init_socket(
         setLeaderboard((JSON.parse(props)))
       })
 
+      socket.on("error", props => {
+        alert("error: " + props)
+      })
+
       socket.on("id", props => {
         props = JSON.parse(props)
         if (!id) {
@@ -79,8 +94,12 @@ async function init_socket(
       })
     })
 
-    if (id) socket.emit("about", { id })
-    else socket.emit("new")
+    if (id) {
+      socket.emit("about", { id })
+    }
+    else {
+      socket.emit("new")
+    }
 
     let lastTimestamp = Date.now()
     let timeout: NodeJS.Timeout
@@ -104,6 +123,9 @@ async function init_socket(
       setUser(props.me)
     })
 
+    socket.on("beacon", props => {
+      setUser(props);
+    })
 
     socket.on("disconnect", () => {
       if (timeout) clearTimeout(timeout)
@@ -126,6 +148,7 @@ export default function Game() {
   const [receivedIds, setReceivedIds] = useState<number[]>([])
 
   const [inited, setInited] = useState<boolean>(false)
+  const [qrTimeout, setQrTimeout] = useState(false)
 
   useEffect(() => {
     if ($userId) init_socket(setSocket, setUser, setLeaderboard, undefined, $userId)
@@ -140,7 +163,7 @@ export default function Game() {
     // Update position when leaderboard changes
     if (user) {
       console.log("Leaderboard", leaderboard)
-      let index = leaderboard.findIndex((x: User) => x.username === user.username)
+      let index = leaderboard.findIndex((x: User) => x.id === user.id)
       setPosition(index + 1)
     }
   }, [leaderboard]);
@@ -151,21 +174,23 @@ export default function Game() {
 
   const init = () => {
     init_ggwave().then(() => {
+      console.log("init_ggwave()")
       init_receive((id: string) => {
-        navigator.vibrate(200);
+        // navigator.vibrate(200);
+        console.log("audio works", userId.get())
         if (socket)
           socket.emit("tag", {
-            taggee: $userId,
+            taggee: userId.get(),
             tagger: id
           })
       })
       setInited(true)
-    })
+    }).catch(err => console.log("Error loading init_ggwave", err))
   }
 
   if ($userId == "") return <Login setUsername={(username: string) => {
     init_socket(setSocket, setUser, setLeaderboard, username, undefined)
-  }} init={init}/>
+  }} init={() => {init();}}/>
   else if (!inited || !user)
     return (
       <div className="container">
@@ -181,45 +206,40 @@ export default function Game() {
   else
     return (
       <div>
-        <h2>{Math.floor(user.points)} points - {position}{position === 1 ? "st" : "th"} place</h2>
+        <h2>{Math.floor(user.points)} points - {position}{place(position)} place</h2>
         <p>Energy - {user.energy || 0}</p>
-        <Progress percent={Math.max(user.energy * 10/12, 0)}/>
+        <Progress percent={Math.max(user.energy * 10 / 12, 0)}/>
         <p>You are a {user.zombie ? "ZOMBIE" : "HUMAN"}</p>
 
-        <button className="button lg" onClick={async () => {
+        {user.zombie && <button className="button lg" onClick={async () => {
           send($userId!);
         }}>Tag!
-        </button>
+        </button>}
 
-        <label className="button lg" htmlFor="beacon" style={{display: "block", width: "calc(100% - 1.2em)"}}>
-          Scan Beacon
-        </label>
-        <input onChange={event => {
-          const barcode = event.target.files![0]
-          const reader = new FileReader()
-          reader.onload = async event => {
-            console.log("Barcode", event)
-            const qr = new QrcodeDecoder()
-            // @ts-expect-error
-            const result = await qr.decodeFromImage(event.target.result)
-            const data = result.data
-            // TODO: Regenerate data
-            let valid = true
-            if (valid && socket) {
-              // Give points
-              socket.emit("beacon", {
-                ...user
-              })
-            }
-          }
-          reader.readAsDataURL(barcode)
-          // @ts-expect-error
-        }} id="beacon" type="file" accept="image/*" capture="camera"/>
+        {/*<label className="button lg" htmlFor="beacon" style={{display: "block", width: "calc(100% - 1.2em)"}}>*/}
+        {/*  Scan Beacon*/}
+        {/*</label>*/}
+        <h2>SCAN BEACON:</h2>
+        <QRScanner
+          fps={10}
+          qrbox={250}
+          disableFlip={false}
+          disableFile={true}
+
+          qrCodeSuccessCallback={(res: string)=>{
+            if(!res.startsWith("bcn!")) return;
+            socket!.emit("beacon", {
+              id: $userId,
+              code: res
+            })
+          }}
+        />
 
         <Leaderboard leaderboard={leaderboard}/>
 
-        <button className="button" style={{ float: "right"}} onClick={() => {
+        <button className="button" style={{float: "right"}} onClick={() => {
           userId.set("")
+          window.location.reload()
         }}
         >sign out
         </button>

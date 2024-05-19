@@ -1,5 +1,6 @@
 // @ts-ignore
 import factory from 'ggwave'
+import {initialRefresh} from "./stores.ts";
   var ggwave: any = null;
   var instance: any = null;
   var context: AudioContext | null = null;
@@ -7,6 +8,9 @@ import factory from 'ggwave'
   export async function init_ggwave() {
     context = new AudioContext({sampleRate: 48000});
     // TODO : handle if that doesn't work
+
+    // @ts-ignore
+    console.log(navigator.audioSession)
 
     return await factory().then(function(_ggwave: any) {
       ggwave = _ggwave;
@@ -85,6 +89,11 @@ import factory from 'ggwave'
 
       mediaStream.connect(recorder);
       recorder.connect(context!.destination);
+      if (initialRefresh.get() == "false") {
+        initialRefresh.set("true")
+        window.location.reload()
+      }
+
     }).catch(function (e) {
       console.error(e);
     });
