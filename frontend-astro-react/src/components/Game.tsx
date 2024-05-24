@@ -8,7 +8,7 @@ import QRScanner from "./QRScanner.tsx";
 
 import { io, Socket } from "socket.io-client";
 
-const URL = "wss://894gr.underpass.clb.li"
+const URL = "wss://36234.underpass.clb.li"
 
 const place = (position: number) => {
   switch (position) {
